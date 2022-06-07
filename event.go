@@ -1,6 +1,9 @@
 package go_ical
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Event struct {
 	UID         string
@@ -16,10 +19,14 @@ type Event struct {
 	LastModified time.Time
 	Location     string
 	// URL              string
-	Status      string
-	IsRecurring bool
-	// RecurrenceID     string
+	Status       string
+	IsRecurring  bool
+	RecurrenceID string
 	// ExcludeDates     []time.Time
 	// Sequence         int
 	// CustomAttributes map[string]string
+}
+
+func (e Event) GetID() string {
+	return fmt.Sprintf("%v-%v", e.UID, e.RecurrenceID)
 }

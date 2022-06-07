@@ -6,7 +6,7 @@ When looking for a good golang ical library we found several existing library wh
 
 This repo uses the following libraries to create a complete event list with reoccuring events unrolled into individual entries.
 
-- [arran4/golang-ical](https://github.com/arran4/golang-ical)
+- [arran4/golang-ical](https://github.com/arran4/golang-ical) (forked with a few changes)
 - [teambition/rrule-go](https://github.com/teambition/rrule-go)
 
 ## Status

@@ -162,6 +162,7 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 	dtStart := evt.GetProperty(ics.ComponentPropertyDtStart)
 	if len(dtStart.ICalParameters["VALUE"]) > 0 && dtStart.ICalParameters["VALUE"][0] == "DATE" {
 		// This is an all day event
+		allDay = true
 		startTime, err = evt.GetAllDayStartAt()
 		if err != nil {
 			log.Println("Error: GetAllDayStartAt")

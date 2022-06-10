@@ -4,7 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
+	"strings"
 	"time"
 
 	ics "github.com/Route-8/golang-ical"
@@ -32,7 +34,19 @@ func NewICalendar(startTime time.Time, endTime time.Time, timezone *time.Locatio
 }
 
 func (c *ICalendar) Parse(r io.Reader) (err error) {
-	c.Calendar, err = ics.ParseCalendar(r)
+	// Read into string for processing
+	b, err := ioutil.ReadAll(r)
+	if err != nil {
+		return
+	}
+	calString := string(b)
+
+	// Check for invalid timezone input from Twitch
+	calString = strings.ReplaceAll(calString, "TZID=/", "TZID=")
+
+	// Convert back to io.Reader and parse
+	sr := strings.NewReader(calString)
+	c.Calendar, err = ics.ParseCalendar(sr)
 	if err != nil {
 		return
 	}
@@ -159,6 +173,9 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 	var allDay = false
 	var startTime, endTime time.Time
 
+	fmt.Println("============ Building Base Event:")
+	fmt.Printf("%+v\n\n", evt)
+
 	dtStart := evt.GetProperty(ics.ComponentPropertyDtStart)
 	if len(dtStart.ICalParameters["VALUE"]) > 0 && dtStart.ICalParameters["VALUE"][0] == "DATE" {
 		// This is an all day event
@@ -188,8 +205,7 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 		}
 	}
 
-	lastModifiedProp := evt.GetProperty(ics.ComponentPropertyLastModified)
-	lastModifiedTime, err := time.Parse(icalTimestampFormatUtc, lastModifiedProp.Value)
+	lastModifiedTime, err := getComponentPropertyTimeSafe(evt, ics.ComponentPropertyLastModified)
 	if err != nil {
 		log.Println("Error: lastModifiedTime")
 		return Event{}, err
@@ -197,9 +213,9 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 
 	// Build base event
 	return Event{
-		UID:         evt.GetProperty(ics.ComponentPropertyUniqueId).Value,
-		Summary:     evt.GetProperty(ics.ComponentPropertySummary).Value,
-		Description: evt.GetProperty(ics.ComponentPropertyDescription).Value,
+		UID:         getComponentPropertyStringSafe(evt, ics.ComponentPropertyUniqueId),
+		Summary:     getComponentPropertyStringSafe(evt, ics.ComponentPropertySummary),
+		Description: getComponentPropertyStringSafe(evt, ics.ComponentPropertyDescription),
 		// Categories
 		AllDay:   allDay,
 		Start:    startTime,
@@ -208,9 +224,9 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 		// Stamp
 		// Created          *time.Time
 		LastModified: lastModifiedTime,
-		Location:     evt.GetProperty(ics.ComponentPropertyLocation).Value,
+		Location:     getComponentPropertyStringSafe(evt, ics.ComponentPropertyLocation),
 		// URL              string
-		Status: evt.GetProperty(ics.ComponentPropertyStatus).Value,
+		Status: getComponentPropertyStringSafe(evt, ics.ComponentPropertyStatus),
 		// RecurrenceID     string
 		// ExcludeDates     []time.Time
 		// Sequence         int
@@ -220,4 +236,22 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 
 func (c *ICalendar) addEvent(event Event) {
 	c.Events[event.GetID()] = event
+}
+
+// Helper functions when retrieving ics.VEvent component properties
+
+func getComponentPropertyStringSafe(evt *ics.VEvent, compProp ics.ComponentProperty) string {
+	prop := evt.GetProperty(compProp)
+	if prop != nil {
+		return prop.Value
+	}
+	return ""
+}
+
+func getComponentPropertyTimeSafe(evt *ics.VEvent, compProp ics.ComponentProperty) (time.Time, error) {
+	prop := evt.GetProperty(compProp)
+	if prop != nil {
+		return time.Parse(icalTimestampFormatUtc, prop.Value)
+	}
+	return time.Time{}, nil
 }

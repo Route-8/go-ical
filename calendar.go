@@ -173,9 +173,6 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 	var allDay = false
 	var startTime, endTime time.Time
 
-	fmt.Println("============ Building Base Event:")
-	fmt.Printf("%+v\n\n", evt)
-
 	dtStart := evt.GetProperty(ics.ComponentPropertyDtStart)
 	if len(dtStart.ICalParameters["VALUE"]) > 0 && dtStart.ICalParameters["VALUE"][0] == "DATE" {
 		// This is an all day event

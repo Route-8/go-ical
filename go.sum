@@ -2,6 +2,8 @@ github.com/Route-8/golang-ical v0.0.0-20220607183934-303f03401326 h1:1vTyvqKJhws
 github.com/Route-8/golang-ical v0.0.0-20220607183934-303f03401326/go.mod h1:VGM723m4xopY57d9b6kfgtbMK1AdQayplpbg9vJJVno=
 github.com/Route-8/golang-ical v0.0.0-20231027160531-b9718c70fb3b h1:7Zac5aQVzz+HUpxmg3q5DNoUJnasbDofhYxPoUgfyCU=
 github.com/Route-8/golang-ical v0.0.0-20231027160531-b9718c70fb3b/go.mod h1:w3kOF6sHWrAMl03YvVQAZoGgLWFsujbfPOWTMZ3MTyY=
+github.com/Route-8/golang-ical v0.0.0-20231027165343-08a44f6da35a h1:RGXOmkGTk76fjcnXOpgt6dmA0cvhiM93vP7y9zxb5gE=
+github.com/Route-8/golang-ical v0.0.0-20231027165343-08a44f6da35a/go.mod h1:w3kOF6sHWrAMl03YvVQAZoGgLWFsujbfPOWTMZ3MTyY=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

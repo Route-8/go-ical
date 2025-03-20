@@ -118,22 +118,27 @@ func (c *ICalendar) AddRecurringEvents(evt *ics.VEvent) (err error) {
 	// Add all ExDate entries to RRuleSet
 	for _, prop := range evt.Properties {
 		if prop.IANAToken == string(ics.ComponentPropertyExdate) {
-			exDate, err := ics.GetTimeFromProp(&prop, evt.Timezones, false)
+			exDates, err := ics.GetTimesFromProp(&prop, evt.Timezones, false)
 			if err != nil {
 				return err
 			}
-			set.ExDate(exDate)
+			for _, ex := range exDates {
+				set.ExDate(ex)
+			}
 		}
 	}
 
 	// Get all RDate entries to RRuleSet
 	for _, prop := range evt.Properties {
 		if prop.IANAToken == string(ics.ComponentPropertyRdate) {
-			rDate, err := ics.GetTimeFromProp(&prop, evt.Timezones, false)
+			rDates, err := ics.GetTimesFromProp(&prop, evt.Timezones, false)
 			if err != nil {
 				return err
 			}
-			set.RDate(rDate)
+			for _, rdate := range rDates {
+				set.RDate(rdate)
+			}
+
 		}
 	}
 

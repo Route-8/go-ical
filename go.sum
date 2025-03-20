@@ -4,6 +4,8 @@ github.com/Route-8/golang-ical v0.0.0-20231027160531-b9718c70fb3b h1:7Zac5aQVzz+
 github.com/Route-8/golang-ical v0.0.0-20231027160531-b9718c70fb3b/go.mod h1:w3kOF6sHWrAMl03YvVQAZoGgLWFsujbfPOWTMZ3MTyY=
 github.com/Route-8/golang-ical v0.0.0-20231027165343-08a44f6da35a h1:RGXOmkGTk76fjcnXOpgt6dmA0cvhiM93vP7y9zxb5gE=
 github.com/Route-8/golang-ical v0.0.0-20231027165343-08a44f6da35a/go.mod h1:w3kOF6sHWrAMl03YvVQAZoGgLWFsujbfPOWTMZ3MTyY=
+github.com/Route-8/golang-ical v0.0.0-20250320145108-6fda71426bb3 h1:4JJoY4EcXDiM0wKSPls1w4q4kQ/rfdvoAEKjnYm80s4=
+github.com/Route-8/golang-ical v0.0.0-20250320145108-6fda71426bb3/go.mod h1:w3kOF6sHWrAMl03YvVQAZoGgLWFsujbfPOWTMZ3MTyY=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
@@ -15,6 +17,8 @@ github.com/teambition/rrule-go v1.8.0 h1:a/IX5s56hGkFF+nRlJUooZU/45OTeeldBGL29nD
 github.com/teambition/rrule-go v1.8.0/go.mod h1:Ieq5AbrKGciP1V//Wq8ktsTXwSwJHDD5mD/wLBGl3p4=
 github.com/tkuchiki/go-timezone v0.2.2 h1:MdHR65KwgVTwWFQrota4SKzc4L5EfuH5SdZZGtk/P2Q=
 github.com/tkuchiki/go-timezone v0.2.2/go.mod h1:oFweWxYl35C/s7HMVZXiA19Jr9Y0qJHMaG/J2TES4LY=
+github.com/tkuchiki/go-timezone v0.2.3 h1:D3TVdIPrFsu9lxGxqNX2wsZwn1MZtTqTW0mdevMozHc=
+github.com/tkuchiki/go-timezone v0.2.3/go.mod h1:oFweWxYl35C/s7HMVZXiA19Jr9Y0qJHMaG/J2TES4LY=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=

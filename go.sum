@@ -1,5 +1,5 @@
-github.com/Route-8/golang-ical v0.0.0-20250320163037-1d8fcfadb0ea h1:ySVLVBOx1MTnQTDXXPAzhTbuK4kPwUlxjMrTEN5GHBE=
-github.com/Route-8/golang-ical v0.0.0-20250320163037-1d8fcfadb0ea/go.mod h1:Tl0X0hdz+I+JQKjEZevaZxo1UvY8SzVOiQuyF/0N6U0=
+github.com/Route-8/golang-ical v0.0.0-20250825231257-87f909023514 h1:H+edfLdfDPktJkL1iBk6Ea6yj9HaZCFwJyBncPBRvyg=
+github.com/Route-8/golang-ical v0.0.0-20250825231257-87f909023514/go.mod h1:Tl0X0hdz+I+JQKjEZevaZxo1UvY8SzVOiQuyF/0N6U0=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

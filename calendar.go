@@ -146,12 +146,18 @@ func (c *ICalendar) AddRecurringEvents(evt *ics.VEvent) (err error) {
 	c.RRuleSets[event.UID] = set
 
 	// Add each Recurring event to the main event list
-	for _, rStart := range set.Between(c.StartTime, c.EndTime, true) {
+	// Expand search window backward by event duration to catch events in progress
+	searchStart := c.StartTime.Add(-event.Duration)
+	for _, rStart := range set.Between(searchStart, c.EndTime, true) {
 		rEvent := event
 		rEvent.Start = rStart
 		rEvent.End = rEvent.Start.Add(rEvent.Duration)
-		rEvent.RecurrenceID = rStart.Format(icalTimestampFormatUtc)
-		c.addEvent(rEvent)
+
+		// Only include events that actually overlap with the query window
+		if rEvent.End.After(c.StartTime) && rEvent.Start.Before(c.EndTime) {
+			rEvent.RecurrenceID = rStart.Format(icalTimestampFormatUtc)
+			c.addEvent(rEvent)
+		}
 	}
 	return nil
 }

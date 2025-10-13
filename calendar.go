@@ -14,6 +14,7 @@ import (
 )
 
 const icalTimestampFormatUtc = "20060102T150405Z"
+const icalTimestampFormatDateOnly = "20060102"
 
 type ICalendar struct {
 	Calendar  *ics.Calendar
@@ -259,7 +260,13 @@ func getComponentPropertyStringSafe(evt *ics.VEvent, compProp ics.ComponentPrope
 func getComponentPropertyTimeSafe(evt *ics.VEvent, compProp ics.ComponentProperty) (time.Time, error) {
 	prop := evt.GetProperty(compProp)
 	if prop != nil {
-		return time.Parse(icalTimestampFormatUtc, prop.Value)
+		if len(prop.Value) == 8 {
+			// Use the truncated date only format
+			return time.Parse(icalTimestampFormatDateOnly, prop.Value)
+		} else {
+			// Use the iCal spec UTC format
+			return time.Parse(icalTimestampFormatUtc, prop.Value)
+		}
 	}
 	return time.Time{}, nil
 }

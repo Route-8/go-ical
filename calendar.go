@@ -52,6 +52,10 @@ func (c *ICalendar) Parse(r io.Reader) (err error) {
 		return
 	}
 
+	if c.TimeZone != nil {
+		c.Calendar.SetDefaultTimezone(c.TimeZone)
+	}
+
 	c.processEvents()
 	return
 }
@@ -119,7 +123,7 @@ func (c *ICalendar) AddRecurringEvents(evt *ics.VEvent) (err error) {
 	// Add all ExDate entries to RRuleSet
 	for _, prop := range evt.Properties {
 		if prop.IANAToken == string(ics.ComponentPropertyExdate) {
-			exDates, err := ics.GetTimesFromProp(&prop, evt.Timezones, false)
+			exDates, err := ics.GetTimesFromProp(&prop, evt.Timezones, false, evt.DefaultTimezone)
 			if err != nil {
 				return err
 			}
@@ -132,7 +136,7 @@ func (c *ICalendar) AddRecurringEvents(evt *ics.VEvent) (err error) {
 	// Get all RDate entries to RRuleSet
 	for _, prop := range evt.Properties {
 		if prop.IANAToken == string(ics.ComponentPropertyRdate) {
-			rDates, err := ics.GetTimesFromProp(&prop, evt.Timezones, false)
+			rDates, err := ics.GetTimesFromProp(&prop, evt.Timezones, false, evt.DefaultTimezone)
 			if err != nil {
 				return err
 			}

@@ -3,7 +3,7 @@ module github.com/Route-8/go-ical
 go 1.17
 
 require (
-	github.com/Route-8/golang-ical v0.0.0-20251013172715-7db16ffe848d
+	github.com/Route-8/golang-ical v0.0.0-20260305170724-bb5aba89bccb
 	github.com/teambition/rrule-go v1.8.2
 )
 

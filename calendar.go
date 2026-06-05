@@ -238,8 +238,8 @@ func getBaseEvent(evt *ics.VEvent) (Event, error) {
 		// Created          *time.Time
 		LastModified: lastModifiedTime,
 		Location:     getComponentPropertyStringSafe(evt, ics.ComponentPropertyLocation),
-		// URL              string
-		Status: getComponentPropertyStringSafe(evt, ics.ComponentPropertyStatus),
+		URL:          getComponentPropertyStringSafe(evt, ics.ComponentPropertyUrl),
+		Status:       getComponentPropertyStringSafe(evt, ics.ComponentPropertyStatus),
 		// RecurrenceID     string
 		// ExcludeDates     []time.Time
 		// Sequence         int

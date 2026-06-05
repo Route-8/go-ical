@@ -18,7 +18,7 @@ type Event struct {
 	// Created          time.Time
 	LastModified time.Time
 	Location     string
-	// URL              string
+	URL          string
 	Status       string
 	IsRecurring  bool
 	RecurrenceID string
